@@ -18,16 +18,16 @@ if [ -f /github/workspace/sbom.json ]; then
   sbom_output=$(jq -c . /github/workspace/sbom.json)
   echo "sbom=$sbom_output" >> "$GITHUB_OUTPUT"
 
-  # 4. Parse components and vulnerabilities
+  # 4. upload components and vulnerabilities
   echo "🔍 Parsing SBOM for components..."
-  components_json=$(node /parse-sbom.js /github/workspace/sbom.json components 2>&1) || {
+  components_json=$(node /upload-sbom.js /github/workspace/sbom.json components 2>&1) || {
     echo "❌ Error while parsing components"
     echo "$components_json"
     exit 1
   }
 
   echo "🔍 Parsing SBOM for vulnerabilities..."
-  vulns_json=$(node /parse-sbom.js /github/workspace/sbom.json vulns 2>&1) || {
+  vulns_json=$(node /upload-sbom.js /github/workspace/sbom.json vulns 2>&1) || {
     echo "❌ Error while parsing vulnerabilities"
     echo "$vulns_json"
     exit 1
