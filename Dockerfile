@@ -9,6 +9,7 @@ RUN chmod +x /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
 
+
 # FROM prabhushan/sbom-base:latest
 # FROM prabhushan/sbom-base:1.0.2
 
