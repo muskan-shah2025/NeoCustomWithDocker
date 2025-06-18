@@ -19,7 +19,6 @@
   "homepage": "https://github.com/muskan-shah2025/NeoCustomWithDocker#readme",
   "dependencies": {
     "express": "^5.1.0",
-    "fs": "^0.0.1-security",
     "multer": "^2.0.1",
     "axios": "^1.6.0"
   }
