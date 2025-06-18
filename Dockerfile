@@ -9,7 +9,8 @@
 
 # ENTRYPOINT ["/entrypoint.sh"]
 
-FROM prabhushan/sbom-base:latest
+# FROM prabhushan/sbom-base:latest
+FROM prabhushan/sbom-base:1.0.2
 
 # Install jq and Node.js
 RUN apk add --no-cache jq nodejs npm
