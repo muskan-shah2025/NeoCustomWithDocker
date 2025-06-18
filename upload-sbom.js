@@ -5,8 +5,8 @@ const axios = require('axios');
 const FormData = require('form-data');
 
 // Configs from env
-const projectId = process.env.PROJECT_ID || 'your_project_id_here';
-const secretKey = process.env.SECRET_KEY || 'ed23wwe';
+const projectId = process.env.PROJECT_ID || '33d18e5f-d030-4a9b-89ca-6374bc85efac';
+const secretKey = process.env.SECRET_KEY || 'odt_hB9IN3oV5zMVUzSSt0Ad1qERGwW70YX7';
 const apiUrl = 'http://64.227.149.25:8081/api/v1/bom';
 const sbomPath = path.resolve('/github/workspace/sbom.json');
 

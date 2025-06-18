@@ -88,7 +88,7 @@ if [ -f /github/workspace/sbom.json ]; then
   echo "📤 Uploading SBOM to API..."
 
   API_URL="http://64.227.149.25:8081/api/v1/bom"
-  PROJECT_ID="${PROJECT_ID:-your_project_id_here}"
+  PROJECT_ID="${PROJECT_ID:-33d18e5f-d030-4a9b-89ca-6374bc85efac}"
   SECRET_KEY="${SECRET_KEY:-odt_hB9IN3oV5zMVUzSSt0Ad1qERGwW70YX7}"
 
   curl -X POST "$API_URL" \

@@ -15,10 +15,12 @@ FROM prabhushan/sbom-base:1.0.2
 # Install jq and Node.js
 RUN apk add --no-cache jq nodejs npm
 
-# Copy entrypoint and JS parser
-COPY entrypoint.sh /entrypoint.sh
-# COPY upload-sbom.js /upload-sbom.js
-RUN chmod +x /entrypoint.sh
+# Copy the script
+COPY upload-sbom.js /upload-sbom.js
 
-ENTRYPOINT ["/entrypoint.sh"]
+# (Optional) If you want to keep entrypoint.sh as well, you can copy it:
+# COPY entrypoint.sh /entrypoint.sh
+# RUN chmod +x /entrypoint.sh
 
+# Set entrypoint to run the JS script with node
+ENTRYPOINT ["node", "/upload-sbom.js"]
