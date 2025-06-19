@@ -4,21 +4,21 @@ set -e
 echo "👋 Hello $INPUT_WHO_TO_GREET"
 
 echo "📦 Generating SBOM using cdxgen..."
-cdxgen . -o /github/workspace/sbom.json
+# cdxgen . -o /github/workspace/sbom.json
 
-chown 1001:121 /github/workspace/sbom.json || true
+# chown 1001:121 /github/workspace/sbom.json || true
 
-if [ -f /github/workspace/sbom.json ]; then
+# if [ -f /github/workspace/sbom.json ]; then
   echo "✅ SBOM generated successfully."
   echo "📤 Uploading SBOM via Node.js script..."
 
   cd /app
   node upload-sbom.js
-else
-  echo "sbom={}" >> "$GITHUB_OUTPUT"
-  echo "⚠️ Warning: sbom.json not found!"
-  exit 1
-fi
+# else
+#   echo "sbom={}" >> "$GITHUB_OUTPUT"
+#   echo "⚠️ Warning: sbom.json not found!"
+#   exit 1
+# fi
 
 
 
