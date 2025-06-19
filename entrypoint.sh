@@ -11,12 +11,18 @@ chown 1001:121 /github/workspace/sbom.json || true
 if [ -f /github/workspace/sbom.json ]; then
   echo "✅ SBOM generated successfully."
   echo "📤 Uploading SBOM via Node.js script..."
-  node /upload-sbom.js
+
+  # Change directory to /app where node_modules are
+  cd /app
+
+  # Run the script from /app folder
+  node upload-sbom.js
 else
   echo "sbom={}" >> "$GITHUB_OUTPUT"
   echo "⚠️ Warning: sbom.json not found!"
   exit 1
 fi
+
 
 
 
