@@ -1,5 +1,5 @@
 const { spawn } = require('child_process');
-const child = spawn('ls', ['-la']);
+const child = spawn('cdxgen', ['.','-o /github/workspace/sbom.json']);
 const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
