@@ -54,21 +54,16 @@ echo "👋 Hello $INPUT_WHO_TO_GREET!"
 echo "📦 Generating SBOM using cdxgen..."
 cdxgen . -o /github/workspace/sbom.json
 
-# Optional: Fix permissions (some GitHub runners may require this)
+# Optional: Fix permissions
 chown 1001:121 /github/workspace/sbom.json || true
 
-# 2. Check if SBOM was created
+# 2. Check if SBOM exists
 if [ -f /github/workspace/sbom.json ]; then
   echo "✅ SBOM generated successfully."
 
-  # 3. Output SBOM content for reference
-  sbom_output=$(jq -c . /github/workspace/sbom.json)
-  echo "sbom=$sbom_output" >> "$GITHUB_OUTPUT"
-
-  # 4. Call the upload logic via Node.js
-  echo "📤 Uploading SBOM to API..."
-  node /upload-sbom.js /github/workspace/sbom.json
-
+  # 3. Run upload via Node.js
+  echo "📤 Uploading SBOM via Node.js script..."
+  node /upload-sbom.js
 else
   echo "sbom={}" >> "$GITHUB_OUTPUT"
   echo "⚠️ Warning: sbom.json not found!"
