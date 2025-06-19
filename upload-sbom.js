@@ -31,9 +31,12 @@ async function uploadSBOM() {
 
     console.log('✅ SBOM uploaded successfully:', response.data);
   } catch (err) {
-    console.error('❌ Failed to upload SBOM:', err.respon
+    console.error('❌ Failed to upload SBOM:', err.response?.data || err.message);
+    process.exit(1);
+  }
+}
 
-
+uploadSBOM();
 
 
 
