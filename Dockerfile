@@ -1,7 +1,7 @@
 FROM prabhushan/sbom-base:1.0.2
 
-# Install jq and Node.js + npm (if not present)
-RUN apk add --no-cache jq nodejs npm
+# Install Node.js, npm, and jq
+RUN apk add --no-cache nodejs npm jq
 
 # Set working directory
 WORKDIR /app
@@ -9,17 +9,16 @@ WORKDIR /app
 # Copy scripts
 COPY entrypoint.sh /entrypoint.sh
 COPY upload-sbom.js /upload-sbom.js
-COPY package.json /app/package.json
-COPY package-lock.json /app/package-lock.json
+COPY package.json package-lock.json ./
 
-# Install Node.js dependencies (axios, form-data)
+# Install Node dependencies
 RUN npm install
 
 # Make entrypoint executable
 RUN chmod +x /entrypoint.sh
 
-# Entrypoint script
 ENTRYPOINT ["/entrypoint.sh"]
+
 
 
 

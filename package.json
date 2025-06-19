@@ -1,26 +1,20 @@
 {
   "name": "neocustomwithdocker",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "SBOM uploader GitHub Action",
+  "main": "upload-sbom.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"No tests\" && exit 0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/muskan-shah2025/NeoCustomWithDocker.git"
+    "url": "https://github.com/muskan-shah2025/NeoCustomWithDocker.git"
   },
-  "keywords": [],
+  "keywords": ["github-action", "sbom", "cdxgen"],
   "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/muskan-shah2025/NeoCustomWithDocker/issues"
-  },
-  "homepage": "https://github.com/muskan-shah2025/NeoCustomWithDocker#readme",
+  "license": "MIT",
   "dependencies": {
     "axios": "^1.10.0",
-    "express": "^5.1.0",
-    "multer": "^2.0.1",
     "form-data": "^4.0.0"
   }
 }

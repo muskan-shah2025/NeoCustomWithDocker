@@ -3,9 +3,8 @@ const path = require('path');
 const axios = require('axios');
 const FormData = require('form-data');
 
-// Config from env or default
-const projectId = process.env.PROJECT_ID || '33d18e5f-d030-4a9b-89ca-6374bc85efac';
-const secretKey = process.env.SECRET_KEY || 'pdt_hB9Ip3oV5zMVqzSSt0Ad1qERGwW70Y27';
+const projectId = process.env.PROJECT_ID;
+const secretKey = process.env.SECRET_KEY;
 const apiUrl = 'http://64.227.149.25:8081/api/v1/bom';
 
 const sbomPath = path.resolve('/github/workspace/sbom.json');
@@ -28,18 +27,11 @@ async function uploadSBOM() {
         ...form.getHeaders(),
         'x-api-key': secretKey,
       },
-      maxBodyLength: Infinity,
-      maxContentLength: Infinity,
     });
 
     console.log('✅ SBOM uploaded successfully:', response.data);
   } catch (err) {
-    console.error('❌ Failed to upload SBOM:', err.response?.data || err.message);
-    process.exit(1);
-  }
-}
-
-uploadSBOM();
+    console.error('❌ Failed to upload SBOM:', err.respon
 
 
 
@@ -88,5 +80,3 @@ uploadSBOM();
 // }
 
 // uploadSBOM();
-
-

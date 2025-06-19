@@ -3,18 +3,13 @@ set -e
 
 echo "👋 Hello $INPUT_WHO_TO_GREET"
 
-# 1. Generate SBOM using cdxgen
 echo "📦 Generating SBOM using cdxgen..."
 cdxgen . -o /github/workspace/sbom.json
 
-# Fix permissions (optional)
 chown 1001:121 /github/workspace/sbom.json || true
 
-# 2. Check if SBOM exists
 if [ -f /github/workspace/sbom.json ]; then
   echo "✅ SBOM generated successfully."
-
-  # 3. Run upload script with Node.js
   echo "📤 Uploading SBOM via Node.js script..."
   node /upload-sbom.js
 else
@@ -22,6 +17,7 @@ else
   echo "⚠️ Warning: sbom.json not found!"
   exit 1
 fi
+
 
 
 
