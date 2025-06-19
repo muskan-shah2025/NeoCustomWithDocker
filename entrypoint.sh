@@ -1,3 +1,32 @@
+#!/bin/bash
+set -e
+
+echo "👋 Hello $1"
+
+# Generate SBOM
+echo "📦 Generating SBOM using cdxgen..."
+cdxgen . -o /github/workspace/sbom.json
+
+# Fix permissions (optional)
+chown 1001:121 /github/workspace/sbom.json || true
+
+if [ -f /github/workspace/sbom.json ]; then
+  echo "✅ SBOM generated successfully."
+  echo "📤 Uploading SBOM via Node.js script..."
+  node /upload-sbom.js
+else
+  echo "sbom={}" >> "$GITHUB_OUTPUT"
+  echo "⚠️ Warning: sbom.json not found!"
+  exit 1
+fi
+
+
+
+
+
+
+# working code
+
 # #!/bin/bash
 # set -e
 
@@ -45,27 +74,3 @@
 # fi
 
 
-#!/bin/bash
-set -e
-
-echo "👋 Hello $INPUT_WHO_TO_GREET!"
-
-# 1. Generate SBOM
-echo "📦 Generating SBOM using cdxgen..."
-cdxgen . -o /github/workspace/sbom.json
-
-# Optional: Fix permissions
-chown 1001:121 /github/workspace/sbom.json || true
-
-# 2. Check if SBOM exists
-if [ -f /github/workspace/sbom.json ]; then
-  echo "✅ SBOM generated successfully."
-
-  # 3. Run upload via Node.js
-  echo "📤 Uploading SBOM via Node.js script..."
-  node /upload-sbom.js
-else
-  echo "sbom={}" >> "$GITHUB_OUTPUT"
-  echo "⚠️ Warning: sbom.json not found!"
-  exit 1
-fi
