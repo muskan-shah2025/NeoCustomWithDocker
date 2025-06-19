@@ -9,13 +9,12 @@ const projectId = process.env.PROJECT_ID;
 const secretKey = process.env.SECRET_KEY;
 const apiUrl = 'http://64.227.149.25:8081/api/v1/bom';
 
-child.stdout.on('data', (data) => {
-  console.log(`Stdout: ${data}`);
-});
-
-const sbomPath = path.resolve('/github/workspace/sbom.json');
+// const sbomPath = path.resolve('/github/workspace/sbom.json');
 
 async function uploadSBOM() {
+  child.stdout.on('data', (data) => {
+  console.log(`Stdout: ${data}`);
+});
   try {
     if (!fs.existsSync(sbomPath)) {
       console.error(`❌ SBOM file not found at ${sbomPath}`);
