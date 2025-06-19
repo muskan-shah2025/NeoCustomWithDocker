@@ -16,6 +16,9 @@ FROM prabhushan/sbom-base:1.0.2
 # Install dependencies
 RUN apk add --no-cache jq nodejs npm
 
+# Install axios and form-data globally
+RUN npm install -g axios form-data
+
 # Copy scripts
 COPY entrypoint.sh /entrypoint.sh
 COPY upload-sbom.js /upload-sbom.js
