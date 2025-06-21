@@ -8,7 +8,7 @@ const projectId = process.env.PROJECT_ID;
 const secretKey = process.env.SECRET_KEY;
 const apiUrl = 'http://64.227.149.25:8081/api/v1/bom';
 const sbomPath = path.resolve('/github/workspace/sbom-new.json');
-
+const projectPath = process.env["GITHUB_WORKSPACE"];
 async function uploadSBOM() {
   // Validate environment variables
   if (!projectId || !secretKey) {
@@ -17,8 +17,8 @@ async function uploadSBOM() {
   }
 
   // Run cdxgen command
-  const child = spawn('cdxgen', ['.', '-o', '/github/workspace/sbom-new.json']);
-
+  // const child = spawn('cdxgen', ['.', '-o', '/github/workspace/sbom-new.json']);
+   const child = spawn('cdxgen', [projectPath, '-o', '/github/workspace/sbom-new.json']);
   // Handle child process output and errors
   child.stdout.on('data', (data) => {
     console.log(`Stdout: ${data}`);
