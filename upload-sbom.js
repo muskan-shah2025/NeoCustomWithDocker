@@ -15,30 +15,30 @@ async function uploadSBOM() {
   child.stdout.on('data', (data) => {
   console.log(`Stdout: ${data}`);
 });
-  try {
-    if (!fs.existsSync(sbomPath)) {
-      console.error(`❌ SBOM file not found at ${sbomPath}`);
-      process.exit(1);
-    }
+  // try {
+  //   if (!fs.existsSync(sbomPath)) {
+  //     console.error(`❌ SBOM file not found at ${sbomPath}`);
+  //     process.exit(1);
+  //   }
 
-    const form = new FormData();
-    form.append('project', projectId);
-    form.append('bom', fs.createReadStream(sbomPath));
+  //   const form = new FormData();
+  //   form.append('project', projectId);
+  //   form.append('bom', fs.createReadStream(sbomPath));
 
-    console.log('📤 Uploading SBOM to API...');
+  //   console.log('📤 Uploading SBOM to API...');
 
-    const response = await axios.post(apiUrl, form, {
-      headers: {
-        ...form.getHeaders(),
-        'x-api-key': secretKey,
-      },
-    });
+  //   const response = await axios.post(apiUrl, form, {
+  //     headers: {
+  //       ...form.getHeaders(),
+  //       'x-api-key': secretKey,
+  //     },
+  //   });
 
-    console.log('✅ SBOM uploaded successfully:', response.data);
-  } catch (err) {
-    console.error('❌ Failed to upload SBOM:', err.response?.data || err.message);
-    process.exit(1);
-  }
+  //   console.log('✅ SBOM uploaded successfully:', response.data);
+  // } catch (err) {
+  //   console.error('❌ Failed to upload SBOM:', err.response?.data || err.message);
+  //   process.exit(1);
+  // }
 }
 
 uploadSBOM();
