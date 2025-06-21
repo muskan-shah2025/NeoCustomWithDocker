@@ -32,8 +32,8 @@ inputs:
     required: false
     default: 'world'
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: 'prabhushan/sbom-base:1.0.2'
+  # image: 'Dockerfile'
   args:
     - ${{ inputs.who-to-greet }}
 
