@@ -1,5 +1,5 @@
 const { spawn } = require('child_process');
-const child = spawn('cdxgen', ['.','-o /github/workspace/sbom.json']);
+const child = spawn('cdxgen', ['.','-o /github/workspace/sbom-new.json']);
 const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
@@ -9,12 +9,21 @@ const projectId = process.env.PROJECT_ID;
 const secretKey = process.env.SECRET_KEY;
 const apiUrl = 'http://64.227.149.25:8081/api/v1/bom';
 
-// const sbomPath = path.resolve('/github/workspace/sbom.json');
+// const sbomPath = path.resolve('/github/workspace/sbom-new.json');
 
 async function uploadSBOM() {
   child.stdout.on('data', (data) => {
   console.log(`Stdout: ${data}`);
+
+  fs.readFile('/github/workspace/sbom-new.json', 'utf8', (err, data) => {
+  if (err) {
+    console.error('Error reading file:', err);
+    return;
+  }
+  console.log(data);
 });
+});
+  
   // try {
   //   if (!fs.existsSync(sbomPath)) {
   //     console.error(`❌ SBOM file not found at ${sbomPath}`);
